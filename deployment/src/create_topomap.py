@@ -1,6 +1,8 @@
 import argparse
 import os
-from utils import msg_to_pil 
+import shutil
+
+from utils import msg_to_pil
 import time
 
 # ROS
