@@ -49,7 +49,7 @@ def main(args: argparse.Namespace):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser()  # 命令行参数解析器
     # get arguments for the recon input dir and the output dir
     parser.add_argument(
         "--input-dir",

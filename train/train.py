@@ -25,6 +25,7 @@ from gnm_train.training.train_utils import (
 
 
 def main(config):
+    # 判断
     assert config["distance"]["min_dist_cat"] < config["distance"]["max_dist_cat"]
     assert config["action"]["min_dist_cat"] < config["action"]["max_dist_cat"]
 
