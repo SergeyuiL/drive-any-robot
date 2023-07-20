@@ -6,14 +6,14 @@ import random
 DATA_SPLITS_DIR = "gnm_train/data/data_splits"
 
 
-def remove_files_in_dir(dir_path: str):
+def remove_files_in_dir(dir_path: str): # 删除一个路径下的所有文件
     for f in os.listdir(dir_path):
         file_path = os.path.join(dir_path, f)
         try:
             if os.path.isfile(file_path) or os.path.islink(file_path):
-                os.unlink(file_path)
+                os.unlink(file_path)    # 相当于remove
             elif os.path.isdir(file_path):
-                shutil.rmtree(file_path)
+                shutil.rmtree(file_path)    # 删除一个完整的目录树
         except Exception as e:
             print("Failed to delete %s. Reason: %s" % (file_path, e))
 

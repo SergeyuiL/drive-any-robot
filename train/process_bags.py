@@ -29,10 +29,10 @@ def main(args: argparse.Namespace):
             if file.endswith(".bag"):
                 bag_files.append(os.path.join(root, file))
     if args.num_trajs >= 0:
-        bag_files = bag_files[: args.num_trajs]
+        bag_files = bag_files[: args.num_trajs] # 只选取num_trajs条轨迹
 
     # processing loop
-    for bag_path in tqdm.tqdm(bag_files, desc="Bags processed"):
+    for bag_path in tqdm.tqdm(bag_files, desc="Bags processed"):    # tqdm:进度条
         try:
             b = rosbag.Bag(bag_path)
         except rosbag.ROSBagException as e:
@@ -41,7 +41,7 @@ def main(args: argparse.Namespace):
             continue
 
         # name is that folders separated by _ and then the last part of the path
-        traj_name = "_".join(bag_path.split("/")[-2:])[:-4]
+        traj_name = "_".join(bag_path.split("/")[-2:])[:-4]     # 得到.bag文件上一层路径_bag名
 
         # load the hdf5 file
         bag_img_data, bag_traj_data = get_images_and_odom(
