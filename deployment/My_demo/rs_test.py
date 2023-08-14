@@ -1,8 +1,6 @@
 import rospy
 import numpy as np
 from sensor_msgs.msg import Image
-from cv_bridge import CvBridge, CvBridgeError
-import cv2
 from PIL import Image as PILImage
 
 
