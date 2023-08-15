@@ -8,6 +8,8 @@ from interbotix_xs_modules.locobot import InterbotixLocobotXS
 JOY_INPUT = "/dev/input/js0"
 JOY_TOPIC = "/joy_orig"
 MV_TOPIC = "/locobot/mobile_base/commands/velocity"
+# MV_TOPIC = "/turtle1/cmd_vel"
+
 
 MAX_V = 1.5 # m/s
 MAX_W = 6.6 # rad/s
