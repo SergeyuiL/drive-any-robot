@@ -1,3 +1,4 @@
+# import threading
 import rospy
 from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Twist
@@ -36,11 +37,12 @@ class PS4ControllerROS:
         buttons = data.buttons
 
         # Map joystick axes to Twist message linear and angular components
-        self.twist_msg.linear.x = axes[1] * MAX_V  
-        # self.twist_msg.angular.z = axes[0] * MAX_W
         L2_joy = (MAX_JOY_VALUE - axes[2]) / 2.0
         R2_joy = (MAX_JOY_VALUE - axes[5]) / 2.0
-        self.twist_msg.angular.z = (L2_joy- R2_joy) * MAX_W
+        self.twist_msg.linear.x = (R2_joy- L2_joy) * MAX_V
+        self.twist_msg.angular.z = axes[0] * MAX_W
+        
+        
 
         # Publish the Twist message
         self.twist_pub.publish(self.twist_msg)
