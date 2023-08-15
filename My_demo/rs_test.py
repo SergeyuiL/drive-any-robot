@@ -5,7 +5,7 @@ from PIL import Image as PILImage
 
 
  
-IMAGE_TOPIC = "/camera/color/image_raw"
+IMAGE_TOPIC = "/locobot/camera/color/image_raw"
 obs_img = None
 
 def msg_to_pil(msg: Image) -> PILImage.Image:

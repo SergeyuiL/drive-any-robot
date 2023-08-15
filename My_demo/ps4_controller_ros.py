@@ -1,0 +1,55 @@
+import rospy
+from sensor_msgs.msg import Joy
+from geometry_msgs.msg import Twist
+
+from interbotix_xs_modules.locobot import InterbotixLocobotXS
+
+
+JOY_INPUT = "/dev/input/js0"
+JOY_TOPIC = "/joy_orig"
+MV_TOPIC = "/locobot/mobile_base/commands/velocity"
+
+MAX_V = 1.5 # m/s
+MAX_W = 6.6 # rad/s
+
+MAX_CAMERA_TILT = 1.0
+MAX_CAMERA_PAN = 1.0
+
+# MAX_JOY_VALUE = 32767
+MAX_JOY_VALUE = 1.0
+
+class PS4ControllerROS:
+    def __init__(self):
+        rospy.init_node('ps4_controller_ros_node')
+
+        self.joy_sub = rospy.Subscriber(JOY_TOPIC, Joy, self.joy_callback)
+        self.twist_pub = rospy.Publisher(MV_TOPIC, Twist, queue_size=1)
+
+        self.twist_msg = Twist()
+        
+        self.locobot = InterbotixLocobotXS(robot_model="locobot_wx250s", arm_model="mobile_wx250s", use_move_base_action=True)
+
+    def joy_callback(self, data):
+        axes = data.axes
+        buttons = data.buttons
+
+        # Map joystick axes to Twist message linear and angular components
+        self.twist_msg.linear.x = axes[1] * MAX_V  
+        self.twist_msg.angular.z = axes[0] * MAX_W
+
+        # Publish the Twist message
+        self.twist_pub.publish(self.twist_msg)
+        
+        # Camera Angle 
+        camera_tilt_angle = axes[4]
+        camera_pan_angle = axes[3]
+        # Move the camera
+        self.locobot.camera.pan_tilt_move(camera_pan_angle, camera_tilt_angle)
+        
+if __name__ == '__main__':
+    try:
+        ps4_controller = PS4ControllerROS()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        pass
+
