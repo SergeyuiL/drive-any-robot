@@ -2,10 +2,12 @@ import rospy
 import numpy as np
 from sensor_msgs.msg import Image
 from PIL import Image as PILImage
+import cv2
 
 
  
-IMAGE_TOPIC = "/locobot/camera/color/image_raw"
+IMAGE_TOPIC = "/camera/color/image_raw"
+
 obs_img = None
 
 def msg_to_pil(msg: Image) -> PILImage.Image:
@@ -17,8 +19,9 @@ def msg_to_pil(msg: Image) -> PILImage.Image:
 def callback_obs(msg: Image):
     global obs_img
     obs_img = msg_to_pil(msg)
-    obs_img.show()
-    print(obs_img.mode, obs_img.size, obs_img.format)
+    CV_img = cv2.cvtColor(np.asarray(obs_img),cv2.COLOR_RGB2BGR) 
+    cv2.imshow("ROS Image", CV_img)
+    cv2.waitKey(1)  # Display the image for a short period
     
     
 if __name__ == '__main__':
@@ -27,4 +30,7 @@ if __name__ == '__main__':
     
     rospy.Subscriber(IMAGE_TOPIC, Image, callback_obs, queue_size=1)
     rospy.spin()
+    
+    # Close OpenCV windows
+    cv2.destroyAllWindows()
     
