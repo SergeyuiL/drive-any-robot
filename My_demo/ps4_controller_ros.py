@@ -26,6 +26,7 @@ MAX_W = 3.14 # rad/s
 
 # MAX_JOY_VALUE = 32767
 MAX_JOY_VALUE = 1.0
+# RATE = 8
 
 class PS4ControllerROS:
     def __init__(self):
@@ -33,7 +34,8 @@ class PS4ControllerROS:
 
         self.joy_sub = rospy.Subscriber(JOY_TOPIC, Joy, self.joy_callback)
         self.twist_pub = rospy.Publisher(MV_TOPIC, Twist, queue_size=1)
-
+        # self.rate = rospy.Rate(RATE)	
+        print("Registered with master node. Waiting for joystick input...")
         self.twist_msg = Twist()
         
         # self.locobot = InterbotixLocobotXS(robot_model="locobot_wx250s", arm_model="mobile_wx250s", use_move_base_action=True)
@@ -63,6 +65,7 @@ class PS4ControllerROS:
 
         # Publish the Twist message
         self.twist_pub.publish(self.twist_msg)
+        # self.rate.sleep()
         
         # # Camera Angle 
         # camera_tilt_angle = axes[4]
@@ -73,6 +76,8 @@ class PS4ControllerROS:
 if __name__ == '__main__':
     try:
         ps4_controller = PS4ControllerROS()
+        
+        
         rospy.spin()
     except rospy.ROSInterruptException:
         pass
