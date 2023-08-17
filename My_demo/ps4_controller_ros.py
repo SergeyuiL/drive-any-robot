@@ -61,7 +61,11 @@ class PS4ControllerROS:
         else:
             self.twist_msg.angular.z = 0.0
         
-        
+        # shut down the node
+        if buttons[0]:
+            self.twist_msg = Twist()
+            self.twist_pub.publish(self.twist_msg)
+            rospy.signal_shutdown("shutdown")
 
         # Publish the Twist message
         self.twist_pub.publish(self.twist_msg)
