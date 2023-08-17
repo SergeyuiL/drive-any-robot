@@ -6,7 +6,7 @@ import cv2
 
 
  
-IMAGE_TOPIC = "/camera/color/image_raw"
+IMAGE_TOPIC = "/locobot/camera/color/image_raw"
 
 obs_img = None
 
