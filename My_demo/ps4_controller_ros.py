@@ -66,6 +66,7 @@ class PS4ControllerROS:
             self.twist_msg = Twist()
             self.twist_pub.publish(self.twist_msg)
             rospy.signal_shutdown("shutdown")
+            print("Control Shut Down!")
 
         # Publish the Twist message
         self.twist_pub.publish(self.twist_msg)
