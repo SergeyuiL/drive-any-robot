@@ -6,6 +6,7 @@ def main():
     
     # arm 
     locobot.gripper.close()
+    locobot.arm.go_to_home_pose()
     locobot.arm.go_to_sleep_pose()
     # locobot.arm.go_to_home_pose()
 
