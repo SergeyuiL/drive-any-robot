@@ -5,5 +5,7 @@ max_w: 3.14 # rad/s
 frame_rate: 4 # Hz
 
 # topic names (modify for different robots/nodes)
-vel_teleop_topic: "/cmd_vel_mux/input/teleop" 
-vel_navi_topic: "/cmd_vel_mux/input/navi"
+# vel_teleop_topic: "/cmd_vel_mux/input/teleop" 
+# vel_navi_topic: "/cmd_vel_mux/input/navi"
+vel_teleop_topic: "/locobot/mobile_base/commands/velocity"
+vel_navi_topic: "/locobot/mobile_base/commands/velocity"

@@ -12,13 +12,13 @@ tmux splitw -h -p 50 # split it into two halves
 
 # Run the roslaunch command in the first pane
 tmux select-pane -t 0
-tmux send-keys "roslaunch interbotix_xslocobot_control xslocobot_python.launch rtabmap_args:=-d" Enter
+tmux send-keys "roslaunch interbotix_xslocobot_control xslocobot_python.launch rtabmap_args:=-d use_lidar:=false" Enter
 
 # Run the teleop.py script in the second pane
 tmux select-pane -t 1
-tmux send-keys "roslaunch ps4_joy ps4ctrler.launch " Enter
-# tmux send-keys "conda activate gnm_deployment" Enter
-# tmux send-keys "python joy_teleop.py" Enter
+# tmux send-keys "roslaunch ps4_joy ps4ctrler.launch " Enter
+tmux send-keys "conda activate gnm_deployment" Enter
+tmux send-keys "python joy_teleop.py" Enter
 
 # Change the directory to ../topomaps/bags and run the rosbag record command in the third pane
 tmux select-pane -t 2

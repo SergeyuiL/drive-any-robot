@@ -10,7 +10,8 @@ tmux splitw -v -p 50 # split it into two halves
 
 # Run the roslaunch command in the first pane
 tmux select-pane -t 0
-tmux send-keys "roslaunch gnm_locobot.launch" Enter
+# tmux send-keys "roslaunch gnm_locobot.launch" Enter
+tmux send-keys "roslaunch interbotix_xslocobot_control xslocobot_python.launch rtabmap_args:=-d use_lidar:=false" Enter
 
 # Run the teleop.py script in the second pane
 tmux select-pane -t 1
