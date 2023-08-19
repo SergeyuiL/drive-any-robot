@@ -4,9 +4,9 @@ train/gnm_train/old_notebooks/
 train/datasets/*
 train/gnm_train/data/data_splits/*
 
-gnm_deployment/model_weights/*
-gnm_deployment/topomaps/images/*
-gnm_deployment/topomaps/bags/*
+# gnm_deployment/model_weights/*
+deployment/topomaps/images/*
+deployment/topomaps/bags/*
 
 .idea
 
