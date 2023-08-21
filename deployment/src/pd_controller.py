@@ -28,7 +28,7 @@ def clip_angle(theta) -> float:
 	return theta - 2 * np.pi
       
 
-def pd_controller(waypoint: np.ndarray) -> Tuple(float):
+def pd_controller(waypoint: np.ndarray) -> Tuple[float]:
 	"""PD controller for the robot"""
 	assert len(waypoint) == 2 or len(waypoint) == 4, "waypoint must be a 2D or 4D vector"
 	if len(waypoint) == 2:
@@ -68,6 +68,7 @@ def callback_reached_goal(reached_goal_msg: Bool):
 
 
 def main():
+	global vel_msg
 	rospy.init_node("PD_CONTROLLER", anonymous=False)
 	waypoint_sub = rospy.Subscriber("/waypoint", Float32MultiArray, callback_drive, queue_size=1)
 	reached_goal_sub = rospy.Subscriber("/topoplan/reached_goal", Bool, callback_reached_goal, queue_size=1)
