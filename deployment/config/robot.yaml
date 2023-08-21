@@ -1,6 +1,6 @@
 # linear and angular speed limits for the robot
-max_v: 0.7 # m/s
-max_w: 3.14 # rad/s
+max_v: 0.4 # m/s
+max_w: 1.5 # rad/s
 # observation rate fo the robot
 frame_rate: 4 # Hz
 
