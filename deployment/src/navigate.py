@@ -159,7 +159,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model",
         "-m",
-        default="large_gnm",
+        default="gnm_large",
         type=str,
         help="model name (hint: check ../config/models.yaml) (default: large_gnm)",
     )

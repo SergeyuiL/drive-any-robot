@@ -14,6 +14,10 @@ tmux selectp -t 2    # select the new, second (2) pane
 tmux splitw -v -p 50 # split it into two halves
 tmux selectp -t 0    # go back to the first pane
 
+tmux selectp -t 3
+tmux splitw -h -p 50 # split it into two halves
+
+
 # Run the roslaunch command in the first pane
 tmux select-pane -t 0
 tmux send-keys "roslaunch gnm_locobot.launch" Enter
@@ -32,6 +36,13 @@ tmux send-keys "python joy_teleop.py" Enter
 tmux select-pane -t 3
 tmux send-keys "conda activate gnm_deployment" Enter
 tmux send-keys "python pd_controller.py" Enter
+
+tmux select-pane -t 4
+tmux send-keys "cd ../topomaps/bags" Enter
+tmux send-keys "rosbag record /locobot/camera/color/image_raw -o run_obs.bag" # change topic if necessary
+
+
+
 
 # Attach to the tmux session
 tmux -2 attach-session -t $session_name
