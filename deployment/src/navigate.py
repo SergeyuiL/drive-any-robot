@@ -117,9 +117,9 @@ def main(args: argparse.Namespace):
             end = min(closest_node + args.radius + 1, goal_node)
             distances = []
             waypoints = []
-            for sg_img in topomap[start: end + 1]:
-                transf_obs_img = transform_images(context_queue, model_params["image_size"])
-                transf_sg_img = transform_images(sg_img, model_params["image_size"])
+            for sg_img in topomap[start: end + 1]: 
+                transf_obs_img = transform_images(context_queue, model_params["image_size"]) 
+                transf_sg_img = transform_images(sg_img, model_params["image_size"]) 
                 dist, waypoint = model(transf_obs_img, transf_sg_img) 
                 distances.append(to_numpy(dist[0]))
                 waypoints.append(to_numpy(waypoint[0]))
