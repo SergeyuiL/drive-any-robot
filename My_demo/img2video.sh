@@ -24,7 +24,7 @@ tmux send-keys "roscore" Enter
 tmux select-pane -t 2
 tmux send-keys "cd .." Enter
 tmux send-keys "cd deployment/topomaps/bags" Enter
-tmux send-keys "rosbag play loco_obs.bag" Enter
+tmux send-keys "rosbag play 719_obs.bag" Enter
 
 # Attach to the tmux session
 tmux -2 attach-session -t $session_name

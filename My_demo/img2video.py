@@ -9,6 +9,9 @@ img_array = []
 
 IMAGE_TOPIC = "/locobot/camera/color/image_raw"
 
+FILE = "obs.mp4"
+# FILE = "run.mp4"
+
 obs_img = None
 CV_img = None
 
@@ -37,11 +40,11 @@ if __name__ == '__main__':
             size = (width, height)
             img_array.append(CV_img)
             CV_img = None
-        if time.time() - start_time > 80:
+        if time.time() - start_time > 42.0:
             print(f"Topic {IMAGE_TOPIC} not publishing anymore. Shutting down...")
             rospy.signal_shutdown("shutdown")
     
-    out = cv2.VideoWriter('obs.mp4', cv2.VideoWriter_fourcc('M', 'P', '4', 'V'), 30, size)
+    out = cv2.VideoWriter(FILE, cv2.VideoWriter_fourcc('M', 'P', '4', 'V'), 20, size)
     for i in range(len(img_array)):
         out.write(img_array[i])
     print("Finished")
