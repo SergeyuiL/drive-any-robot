@@ -7,9 +7,11 @@ import time
 
 img_array = []
 
-IMAGE_TOPIC = "/locobot/camera/color/image_raw"
+# IMAGE_TOPIC = "/locobot/camera/color/image_raw"
+IMAGE_TOPIC = "/camera/color/image_raw"
 
-FILE = "obs.mp4"
+FILE = "image.mp4"
+# FILE = "obs.mp4"
 # FILE = "run.mp4"
 
 obs_img = None
